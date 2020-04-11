@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Paper, Tabs, Tab } from "@material-ui/core";
+import QuestionHomeCard from "./QuestionHomeCard";
 
 class Home extends Component {
   state = {
@@ -17,6 +18,11 @@ class Home extends Component {
     console.log(this.props);
     const { selectedTab } = this.state;
 
+    const questionsIds =
+      selectedTab === 1
+        ? this.props.answeredQuestionIds
+        : this.props.unansweredQuestionIds;
+
     return (
       <div>
         <Paper square>
@@ -32,8 +38,10 @@ class Home extends Component {
           </Tabs>
         </Paper>
         <ul className="dashboard-list">
-          {this.props.unansweredQuestionIds.map((id) => (
-            <li key={id}>{id}</li>
+          {questionsIds.map((id) => (
+            <li key={id}>
+              <QuestionHomeCard id={id} />
+            </li>
           ))}
         </ul>
       </div>

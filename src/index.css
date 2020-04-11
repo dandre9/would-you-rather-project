@@ -76,14 +76,14 @@ li {
 }
 
 .avatar {
-  height: 50px;
+  height: 75px;
   border-radius: 25px;
   margin: 10px;
 }
 
 .tweet {
   width: 100%;
-  max-width: 590px;
+  max-width: 500px;
   padding: 10px;
   display: flex;
   margin: 0 auto;
