@@ -1,20 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
 
 const NavBar = () => {
+  //TODO: Destacar botao selecionado
   return (
     <AppBar position="static">
       <Toolbar>
-        <Link to="/">
+        <NavLink exact to="/">
           <Button style={{ color: "white" }}>Home</Button>
-        </Link>
-        <Link to="/add">
+        </NavLink>
+        <NavLink to="/add">
           <Button style={{ color: "white" }}>New Question</Button>
-        </Link>
-        <Link>
+        </NavLink>
+        <NavLink to="/leaderboard">
           <Button style={{ color: "white" }}>Leader Board</Button>
-        </Link>
+        </NavLink>
       </Toolbar>
     </AppBar>
   );
