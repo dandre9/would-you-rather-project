@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
-import { AppBar, Toolbar, Button, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import NavBar from "./NavBar";
 import Home from "./Home";
 import NewQuestion from "./NewQuestion";
+import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
   componentDidMount() {
@@ -14,30 +16,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="center">
-          <Container maxWidth="lg">
-            <AppBar position="static">
-              <Toolbar>
-                <Link to="/">
-                  <Button style={{ color: "white" }}>Home</Button>
-                </Link>
-                <Link to="/add">
-                  <Button style={{ color: "white" }}>New Question</Button>
-                </Link>
-                <Link>
-                  <Button style={{ color: "white" }}>Leader Board</Button>
-                </Link>
-              </Toolbar>
-            </AppBar>
-            {this.props.loading ? null : (
-              <div>
-                <Route path="/" exact component={Home} />
-                <Route path="/add" component={NewQuestion} />
-                {/* <Route path="/tweet/:id" component={TweetPage} /> */}
-              </div>
-            )}
-          </Container>
-        </div>
+        <Container className="center" maxWidth="lg">
+          <NavBar />
+
+          {this.props.loading ? null : (
+            <div>
+              <Route path="/" exact component={Home} />
+              <Route path="/add" component={NewQuestion} />
+              <Route path="/leaderboard" component={LeaderBoard} />
+            </div>
+          )}
+        </Container>
       </Router>
     );
   }
