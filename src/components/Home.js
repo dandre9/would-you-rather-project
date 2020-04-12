@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Paper, Tabs, Tab } from "@material-ui/core";
-import QuestionHomeCard from "./QuestionHomeCard";
+import HomeQuestionCard from "./HomeQuestionCard";
 
 class Home extends Component {
   state = {
@@ -19,13 +19,13 @@ class Home extends Component {
     const { selectedTab } = this.state;
 
     const questionsIds =
-      selectedTab === 1
-        ? this.props.answeredQuestionIds
-        : this.props.unansweredQuestionIds;
+      selectedTab === 0
+        ? this.props.unansweredQuestionIds
+        : this.props.answeredQuestionIds;
 
     return (
       <div>
-        <Paper square>
+        <Paper square style={{ maxWidth: 520, margin: "auto" }}>
           <Tabs
             centered
             value={selectedTab}
@@ -40,7 +40,7 @@ class Home extends Component {
         <ul className="dashboard-list">
           {questionsIds.map((id) => (
             <li key={id}>
-              <QuestionHomeCard id={id} />
+              <HomeQuestionCard id={id} />
             </li>
           ))}
         </ul>
@@ -61,8 +61,12 @@ function mapStateToProps({ authedUser, questions }) {
   );
 
   return {
-    answeredQuestionIds,
-    unansweredQuestionIds,
+    answeredQuestionIds: answeredQuestionIds.sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    ),
+    unansweredQuestionIds: unansweredQuestionIds.sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    ),
   };
 }
 
