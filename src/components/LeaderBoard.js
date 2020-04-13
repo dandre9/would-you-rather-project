@@ -4,8 +4,6 @@ import LeaderBoardCard from "./LeaderBoardCard";
 
 class LeaderBoard extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div>
         <ul className="dashboard-list">
@@ -20,21 +18,10 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps({ users, questions }) {
+function mapStateToProps({ users }) {
   const leaderBoard = Object.keys(users).map((userId) => {
-    let questionsMade = 0;
-    let questionsAnswered = 0;
-    Object.keys(questions).forEach((questionId) => {
-      if (questions[questionId].author === userId) {
-        questionsMade++;
-      }
-      if (
-        questions[questionId].optionOne.votes.includes(userId) ||
-        questions[questionId].optionTwo.votes.includes(userId)
-      ) {
-        questionsAnswered++;
-      }
-    });
+    let questionsMade = users[userId].questions.length;
+    let questionsAnswered = Object.keys(users[userId].answers).length;
 
     return {
       userId,
