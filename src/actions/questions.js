@@ -1,4 +1,5 @@
 import { saveQuestion } from "../utils/api";
+import { addUserQuestion } from "../actions/users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
@@ -27,7 +28,10 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       optionOneText,
       optionTwoText,
       author: authedUser,
-    }).then((question) => dispatch(addQuestion(question)));
+    }).then((question) => {
+      dispatch(addQuestion(question));
+      dispatch(addUserQuestion(authedUser, question.id));
+    });
     // .then(() => dispatch(hideLoading()));
   };
 }
