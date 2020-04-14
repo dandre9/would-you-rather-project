@@ -24,7 +24,11 @@ class Poll extends Component {
     } else {
       return (
         <div>
-          <PollUnanswered />
+          <PollUnanswered
+            user={user}
+            question={question}
+            authedUser={authedUser}
+          />
         </div>
       );
     }
