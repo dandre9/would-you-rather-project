@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import { Container } from "@material-ui/core";
 import NavBar from "./NavBar";
@@ -18,36 +23,41 @@ class App extends Component {
   }
 
   render() {
-    if (!this.props.authedUser) {
-      return (
-        <Router>
-          <Login />
-        </Router>
-      );
-    }
-
     return (
       <Router>
         <Container className="center" maxWidth="lg">
-          <NavBar />
+          {!this.props.authedUser ? (
+            <div>
+              <Route path="/login" component={Login} />
+              <Redirect to="/login" />
+            </div>
+          ) : (
+            <NavBar userId={this.props.authedUser} users={this.props.users} />
+          )}
 
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/add" component={NewQuestion} />
-            <Route path="/leaderboard" component={LeaderBoard} />
-            <Route path="/question/:id" component={Poll} />
-            <Route path="/login" component={Login} />
-            <Route path="*" component={NotFound} />
-          </Switch>
+          {this.props.authedUser && (
+            <div>
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/add" component={NewQuestion} />
+                <Route path="/leaderboard" component={LeaderBoard} />
+                <Route path="/question/:id" component={Poll} />
+                <Route path="/login" component={Login} />
+                <Route path="*" component={NotFound} />
+              </Switch>
+              <Redirect to="/" />
+            </div>
+          )}
         </Container>
       </Router>
     );
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
+    users,
   };
 }
 
