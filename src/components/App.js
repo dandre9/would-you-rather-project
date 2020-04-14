@@ -42,7 +42,7 @@ class App extends Component {
                 <Route path="/leaderboard" component={LeaderBoard} />
                 <Route path="/question/:id" component={Poll} />
                 <Route path="/login" component={Login} />
-                <Route path="*" component={NotFound} />
+                <Route path="/notfound" component={NotFound} />
               </Switch>
               <Redirect to="/" />
             </div>

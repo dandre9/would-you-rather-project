@@ -1,7 +1,7 @@
 import React from "react";
 
 const NotFound = () => {
-  return <span style={{ marginBottom: 50 }}>404 page not found</span>;
+  return <div style={{ marginTop: 50 }}>404 page not found</div>;
 };
 
 export default NotFound;

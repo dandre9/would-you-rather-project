@@ -39,7 +39,7 @@ class NewQuestion extends Component {
         </h2>
         <div className="form-div">
           <h3>Would you rather...</h3>
-          <form className="new-tweet" onSubmit={this.handleSubmit}>
+          <form className="new-question" onSubmit={this.handleSubmit}>
             <input
               onChange={(e) => this.handleInputChange(e, "firstOption")}
               style={{ marginBottom: 20 }}

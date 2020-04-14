@@ -6,6 +6,11 @@ import { Button } from "@material-ui/core";
 class QuestionHomeCard extends Component {
   render() {
     const { question, user, id } = this.props;
+    let linkRedirect = `/question/${id}`;
+    if (question.timestamp > 1577836800000) {
+      linkRedirect = `/notfound`;
+    }
+
     return (
       <div className="question">
         <img
@@ -26,7 +31,7 @@ class QuestionHomeCard extends Component {
           {question.optionTwo.text}
         </div>
         <div className="question-info">
-          <Link to={`/question/${id}`}>
+          <Link to={linkRedirect}>
             <Button
               style={{ margin: "auto" }}
               variant="outlined"
