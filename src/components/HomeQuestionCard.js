@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 class QuestionHomeCard extends Component {
   render() {
-    const { question, user } = this.props;
+    const { question, user, id } = this.props;
     return (
       <div className="tweet">
         <img
@@ -25,9 +26,15 @@ class QuestionHomeCard extends Component {
           {question.optionTwo.text}
         </div>
         <div className="tweet-info">
-          <Button style={{ margin: "auto" }} variant="outlined" color="primary">
-            View Poll
-          </Button>
+          <Link to={`/question/${id}`}>
+            <Button
+              style={{ margin: "auto" }}
+              variant="outlined"
+              color="primary"
+            >
+              View Poll
+            </Button>
+          </Link>
         </div>
       </div>
     );

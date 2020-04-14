@@ -15,7 +15,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { selectedTab } = this.state;
 
     const questionsIds =
