@@ -9,6 +9,7 @@ import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import Poll from "./Poll";
 import NotFound from "./NotFound";
+import Login from "./Login";
 
 class App extends Component {
   //TODO: Inserir comentarios no codigo
@@ -17,20 +18,27 @@ class App extends Component {
   }
 
   render() {
+    if (!this.props.authedUser) {
+      return (
+        <Router>
+          <Login />
+        </Router>
+      );
+    }
+
     return (
       <Router>
         <Container className="center" maxWidth="lg">
           <NavBar />
 
-          {this.props.loading ? null : (
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/add" component={NewQuestion} />
-              <Route path="/leaderboard" component={LeaderBoard} />
-              <Route path="/question/:id" component={Poll} />
-              <Route path="*" component={NotFound} />
-            </Switch>
-          )}
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/add" component={NewQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
+            <Route path="/question/:id" component={Poll} />
+            <Route path="/login" component={Login} />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </Container>
       </Router>
     );
@@ -39,7 +47,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null,
+    authedUser,
   };
 }
 

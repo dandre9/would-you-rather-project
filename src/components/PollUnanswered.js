@@ -76,14 +76,15 @@ class PollUnanswered extends Component {
           </div>
         </div>
         <br />
-        <div>
+        <div className="tweet-info" style={{ textAlign: "left" }}>
           <Button
             variant="outlined"
-            style={{ margin: "auto" }}
+            color="primary"
+            style={{ margin: "auto", marginTop: 50 }}
             disabled={!option1 && !option2}
             onClick={this.vote}
           >
-            Teste
+            VOTE
           </Button>
         </div>
       </div>
