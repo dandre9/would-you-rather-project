@@ -1,24 +1,57 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { logoutUser } from "../actions/authedUser";
 
-const NavBar = () => {
+class NavBar extends Component {
   //TODO: Destacar botao selecionado
-  return (
-    <AppBar position="static">
-      <Toolbar>
-        <NavLink exact to="/">
-          <Button style={{ color: "white" }}>Home</Button>
-        </NavLink>
-        <NavLink to="/add">
-          <Button style={{ color: "white" }}>New Question</Button>
-        </NavLink>
-        <NavLink to="/leaderboard">
-          <Button style={{ color: "white" }}>Leader Board</Button>
-        </NavLink>
-      </Toolbar>
-    </AppBar>
-  );
-};
+  handleLogout = () => {
+    const { dispatch } = this.props;
 
-export default NavBar;
+    dispatch(logoutUser());
+  };
+
+  render() {
+    const { users, userId } = this.props;
+
+    return (
+      <AppBar position="static">
+        <Toolbar>
+          <NavLink exact to="/">
+            <Button style={{ color: "white" }}>Home</Button>
+          </NavLink>
+          <NavLink to="/add">
+            <Button style={{ color: "white" }}>New Question</Button>
+          </NavLink>
+          <NavLink to="/leaderboard">
+            <Button style={{ color: "white" }}>Leader Board</Button>
+          </NavLink>
+          {/* <div style={{ position: "absolute", right: 35 }}> */}
+          <img
+            src={users[userId].avatarURL}
+            alt={`Avatar of ${users[userId].name}`}
+            style={{
+              position: "absolute",
+              right: 110,
+              color: "white",
+              width: 45,
+              height: 45,
+              margin: "auto",
+            }}
+            className="avatar"
+          />
+          <Button
+            onClick={this.handleLogout}
+            style={{ position: "absolute", right: 30, color: "white" }}
+          >
+            Logout
+          </Button>
+          {/* </div> */}
+        </Toolbar>
+      </AppBar>
+    );
+  }
+}
+
+export default connect()(NavBar);
