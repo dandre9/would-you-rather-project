@@ -30,14 +30,14 @@ class PollUnanswered extends Component {
     const { option1, option2 } = this.state;
 
     return (
-      <div className="tweet" style={{ marginTop: 20 }}>
+      <div className="question" style={{ marginTop: 20 }}>
         <img
           src={user.avatarURL}
           alt={`Avatar of ${user.name}`}
           className="avatar"
         />
         <div
-          className="tweet-info"
+          className="question-info"
           style={{ textAlign: "left", width: "100%" }}
         >
           <div>
@@ -49,13 +49,13 @@ class PollUnanswered extends Component {
           <div>{question.optionTwo.text}</div>
         </div>
         <div
-          className="tweet-info"
+          className="question-info"
           style={{ textAlign: "left", width: "100%" }}
         >
           <span>Chose one:</span>
 
           <br />
-          <div>
+          <div style={{ marginTop: 17 }}>
             <input
               onChange={(e) => this.handleRadioChange(e, "option1")}
               type="radio"
@@ -76,7 +76,7 @@ class PollUnanswered extends Component {
           </div>
         </div>
         <br />
-        <div className="tweet-info" style={{ textAlign: "left" }}>
+        <div className="question-info" style={{ textAlign: "left" }}>
           <Button
             variant="outlined"
             color="primary"

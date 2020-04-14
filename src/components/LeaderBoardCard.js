@@ -2,17 +2,16 @@ import React, { Component } from "react";
 
 class QuestionHomeCard extends Component {
   render() {
-    //TODO: Estilizar o card
     const { user } = this.props;
     return (
-      <div className="tweet">
+      <div className="question">
         <img
           src={user.avatar}
           alt={`Avatar of ${user.userName}`}
           className="avatar"
         />
         <div
-          className="tweet-info"
+          className="question-info"
           style={{ textAlign: "left", width: "100%" }}
         >
           <div>
@@ -23,7 +22,9 @@ class QuestionHomeCard extends Component {
           <br />
           Created questions: {user.questionsMade}
         </div>
-        <div className="tweet-info">Score {user.score}</div>
+        <div style={{ marginTop: 10 }} className="question-info">
+          Score <h3>{user.score}</h3>
+        </div>
       </div>
     );
   }

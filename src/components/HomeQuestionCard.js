@@ -7,14 +7,14 @@ class QuestionHomeCard extends Component {
   render() {
     const { question, user, id } = this.props;
     return (
-      <div className="tweet">
+      <div className="question">
         <img
           src={user.avatarURL}
           alt={`Avatar of ${user.name}`}
           className="avatar"
         />
         <div
-          className="tweet-info"
+          className="question-info"
           style={{ textAlign: "left", width: "100%" }}
         >
           <div>
@@ -25,7 +25,7 @@ class QuestionHomeCard extends Component {
           <br />
           {question.optionTwo.text}
         </div>
-        <div className="tweet-info">
+        <div className="question-info">
           <Link to={`/question/${id}`}>
             <Button
               style={{ margin: "auto" }}

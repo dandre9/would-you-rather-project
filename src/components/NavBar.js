@@ -5,7 +5,6 @@ import { AppBar, Toolbar, Button } from "@material-ui/core";
 import { logoutUser } from "../actions/authedUser";
 
 class NavBar extends Component {
-  //TODO: Destacar botao selecionado
   handleLogout = () => {
     const { dispatch } = this.props;
 

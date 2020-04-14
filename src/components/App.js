@@ -17,7 +17,6 @@ import NotFound from "./NotFound";
 import Login from "./Login";
 
 class App extends Component {
-  //TODO: Inserir comentarios no codigo
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
