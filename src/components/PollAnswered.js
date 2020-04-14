@@ -4,8 +4,8 @@ const PollAnswered = ({ user, question, authedUser }) => {
   const optionOneLength = question.optionOne.votes.length;
   const optionTwoLength = question.optionTwo.votes.length;
   const total = optionOneLength + optionTwoLength;
-  const optionOnePct = Math.round((optionOneLength / total) * 100) / 100;
-  const optionTwoPct = Math.round((optionTwoLength / total) * 100) / 100;
+  const optionOnePct = Math.round((optionOneLength / total) * 100);
+  const optionTwoPct = Math.round((optionTwoLength / total) * 100);
   let optionOneColor = "";
   let optionTwoColor = "";
 
