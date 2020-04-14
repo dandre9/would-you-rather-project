@@ -27,7 +27,9 @@ class NavBar extends Component {
           <NavLink to="/leaderboard">
             <Button style={{ color: "white" }}>Leader Board</Button>
           </NavLink>
-          {/* <div style={{ position: "absolute", right: 35 }}> */}
+          <span
+            style={{ position: "absolute", right: "45%" }}
+          >{`Welcome, ${users[userId].name}`}</span>
           <img
             src={users[userId].avatarURL}
             alt={`Avatar of ${users[userId].name}`}
